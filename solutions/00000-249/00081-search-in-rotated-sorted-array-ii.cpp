@@ -15,27 +15,25 @@ public:
                 return true;
             }
             
-            // sorted segment, normal binary search
-            if (nums[start] <= nums[mid] && nums[mid] <= nums[end] && target > nums[mid] && target <= nums[end]) {
-                start = mid + 1;
+            if (nums[start] < nums[mid]) {
+                if (nums[start] <= target && target < nums[mid]) {
+                    end = mid - 1;
+                }
+                else {
+                    start = mid + 1;
+                }
             }
-            else if (nums[start] <= nums[mid] && nums[mid] <= nums[end] && target >= nums[start] && target < nums[mid]) {
-                end = mid - 1;
-            }
-            
-            // try to find a sorted segment to continue the binary search
-            else if (nums[mid] <= nums[end] && target > nums[mid] && target <= nums[end]) {
-                start = mid + 1;
-            }
-            else if (nums[start] <= nums[mid] && target >= nums[start] && target < nums[mid]) {
-                end = mid - 1;
-            }
-            else {
-                if (target == nums[start]) return true;
-                
+            else if (nums[start] == nums[mid]) {
                 start++;
             }
-            
+            else {
+                if (target > nums[mid] && target <= nums[end]) {
+                    start = mid + 1;
+                }
+                else {
+                    end = mid - 1;
+                }
+            }
         }
         
         return false;
