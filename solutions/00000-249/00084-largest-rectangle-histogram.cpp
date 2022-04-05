@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/largest-rectangle-in-histogram/
+// 84. Largest Rectangle in Histogram
+// max area monotonic stack
+// TODO: revisit
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
