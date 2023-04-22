@@ -22,24 +22,25 @@ public:
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> result;
-        unordered_map<int, int> freq;
-        int diff = 0;
-        int val = 0;
-        
-        for (int i = 0; i < nums.size(); i++) {
-            val = nums.at(i);
-            diff = target - val;
-            if (freq.count(diff) > 0) {
-                result.push_back(freq[diff]);
-                result.push_back(i);
-                return result;
+        int n = nums.size();
+        vector<int> res;
+        unordered_map<int, int> xref; // value, index
+
+        // O(n)
+        for (int i = 0; i < n; ++i) {
+            int a = nums[i];
+            int b = target - a;
+            if (xref.find(b) != xref.end()) {
+                res.push_back(xref[b]);
+                res.push_back(i);
+                return res;
             }
             else {
-                freq[val] = i;
+                xref[a] = i;
             }
         }
+
+        return res;
         
-        return result;
     }
 };
