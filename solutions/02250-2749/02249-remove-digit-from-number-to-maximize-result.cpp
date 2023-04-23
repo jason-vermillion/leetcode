@@ -4,18 +4,22 @@ class Solution {
 public:
     string removeDigit(string number, char digit) {
         int n = number.size();
-        vector<string> permutations;
+        string maxVal = "";
 
         for (int i = 0; i < n; i++) {
             string t;
             if (number[i] == digit) {
                 t = number.substr(0, i) + number.substr(i+1, n-i-1);
-                permutations.push_back(t);
+                if (t > maxVal) {
+                  maxVal = t;
+                }
             }
         }
 
-        sort(permutations.begin(), permutations.end());
+        if (maxVal.size() == 0) {
+          maxVal = number;
+        };
 
-        return permutations[permutations.size()-1];
+        return maxVal;
     }
 };
